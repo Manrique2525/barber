@@ -47,7 +47,13 @@ export function SmartImage({
   );
 
   return (
-    <div className={cn("bg-ink relative overflow-hidden", hoverZoom && "group", className)}>
+    <div
+      className={cn(
+        "bg-ink relative h-full w-full overflow-hidden",
+        hoverZoom && "group",
+        className
+      )}
+    >
       {fill ? (
         <Image
           ref={imgRef}
