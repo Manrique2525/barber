@@ -1,8 +1,8 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
 import { whatsappUrl } from "@/services/whatsapp";
 import { Floating } from "@/components/animations/Floating";
+import { WhatsAppIcon } from "@/components/common/WhatsAppIcon";
 
 export function WhatsAppFloat() {
   return (
@@ -18,7 +18,7 @@ export function WhatsAppFloat() {
           className="animate-pulse-glow absolute inset-0 rounded-full bg-[#25D366]/40"
           aria-hidden="true"
         />
-        <MessageCircle className="relative h-6 w-6" aria-hidden="true" />
+        <WhatsAppIcon className="relative h-7 w-7" aria-hidden="true" />
         <span className="border-border bg-card text-foreground pointer-events-none absolute right-full mr-3 rounded-lg border px-3 py-1.5 text-xs font-medium whitespace-nowrap opacity-0 shadow-xl transition-opacity duration-300 group-hover:opacity-100 max-sm:hidden">
           Reserva por WhatsApp
         </span>
