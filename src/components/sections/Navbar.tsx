@@ -53,69 +53,71 @@ export function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-40 transition-all duration-500",
-        scrolled
-          ? "border-border/60 bg-background/80 border-b shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      )}
-    >
-      <nav
-        className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8"
-        aria-label="Navegación principal"
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-40 transition-all duration-500",
+          scrolled
+            ? "border-border/60 bg-background/80 border-b shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
+        )}
       >
-        <a href="#inicio" aria-label={`${site.name} — Ir al inicio`}>
-          <Logo compact={menuOpen} />
-        </a>
-
-        <ul className="hidden items-center gap-1 lg:flex">
-          {nav.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className={cn(
-                  "group text-muted-foreground hover:text-foreground relative rounded-full px-4 py-2 text-sm transition-colors duration-300",
-                  active === item.href.slice(1) && "text-gold"
-                )}
-              >
-                {item.label}
-                <span
-                  className={cn(
-                    "bg-gold absolute inset-x-4 -bottom-0.5 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100",
-                    active === item.href.slice(1) && "scale-x-100"
-                  )}
-                  aria-hidden="true"
-                />
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="hidden lg:block">
-          <a href={whatsappUrl()}>
-            <Button size="sm">
-              <Calendar className="h-4 w-4" aria-hidden="true" />
-              Reservar Cita
-            </Button>
-          </a>
-        </div>
-
-        <button
-          type="button"
-          className="border-border text-foreground inline-flex h-11 w-11 items-center justify-center rounded-full border lg:hidden"
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+        <nav
+          className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8"
+          aria-label="Navegación principal"
         >
-          {menuOpen ? (
-            <X className="h-5 w-5" aria-hidden="true" />
-          ) : (
-            <Menu className="h-5 w-5" aria-hidden="true" />
-          )}
-        </button>
-      </nav>
+          <a href="#inicio" aria-label={`${site.name} — Ir al inicio`}>
+            <Logo compact={menuOpen} />
+          </a>
+
+          <ul className="hidden items-center gap-1 lg:flex">
+            {nav.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className={cn(
+                    "group text-muted-foreground hover:text-foreground relative rounded-full px-4 py-2 text-sm transition-colors duration-300",
+                    active === item.href.slice(1) && "text-gold"
+                  )}
+                >
+                  {item.label}
+                  <span
+                    className={cn(
+                      "bg-gold absolute inset-x-4 -bottom-0.5 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100",
+                      active === item.href.slice(1) && "scale-x-100"
+                    )}
+                    aria-hidden="true"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden lg:block">
+            <a href={whatsappUrl()}>
+              <Button size="sm">
+                <Calendar className="h-4 w-4" aria-hidden="true" />
+                Reservar Cita
+              </Button>
+            </a>
+          </div>
+
+          <button
+            type="button"
+            className="border-border text-foreground inline-flex h-11 w-11 items-center justify-center rounded-full border lg:hidden"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          >
+            {menuOpen ? (
+              <X className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <Menu className="h-5 w-5" aria-hidden="true" />
+            )}
+          </button>
+        </nav>
+      </header>
 
       <AnimatePresence>
         {menuOpen ? (
@@ -125,7 +127,7 @@ export function Navbar() {
             animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
             exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-background/98 fixed inset-0 top-[72px] z-40 flex flex-col backdrop-blur-xl lg:hidden"
+            className="bg-background/98 fixed inset-0 top-[72px] z-50 flex flex-col backdrop-blur-xl lg:hidden"
           >
             <nav
               className="flex flex-1 flex-col justify-center gap-2 px-8"
@@ -164,6 +166,6 @@ export function Navbar() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
